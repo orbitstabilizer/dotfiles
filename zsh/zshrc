@@ -1,0 +1,140 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='lvim'
+fi
+
+
+######################################   SETUP   ######################################
+# >>> SDKMAN >>>
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+function sdkman_setup() {
+    export SDKMAN_DIR="$HOME/.sdkman"
+    [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+}
+# <<< SDKMAN <<<
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+function conda_setup() {
+    __conda_setup="$('~/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "~/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "~/opt/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="~/opt/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+}
+# <<< conda initialize <<<
+
+# >>> PERL >>>
+function perl_setup() {
+    export PATH="~/perl5/bin${PATH:+:${PATH}}"
+    export PERL5LIB="~/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
+    export PERL_LOCAL_LIB_ROOT="~/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
+    export PERL_MB_OPT="--install_base \"~/perl5\""
+    export PERL_MM_OPT="INSTALL_BASE=~/perl5"
+}
+# <<< PERL <<<
+
+[ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+sdkman_setup
+perl_setup
+# conda_setup
+######################################   SETUP   ######################################
+
+
+####################################################################################
+##################################   Custom   ######################################
+####################################################################################
+source ~/scripts/zsh_utils.sh
+source ~/scripts/snippets.sh
+source ~/scripts/aliases.sh
+source ~/scripts/fmv.sh
+source ~/scripts/forward.sh
+source ~/scripts/pdfmerge.sh
+source ~/scripts/makelog.sh
+source ~/scripts/fetch.sh
+
+
+export NVM_DIR="$HOME/.nvm"
+export MANPATH="/usr/local/man:$MANPATH"
+
+######################################   PATH   ######################################
+function add_path() {
+    # if [[ -d "$1" && ":$PATH:" != *":$1:"* ]]; then
+    export PATH="${PATH:+"$PATH:"}$1"
+    # fi
+}
+
+add_path "/usr/local/opt/openssl@3/bin"
+add_path "/usr/local/sbin"
+add_path "/usr/local/bin"
+add_path "/usr/bin"
+add_path "/bin"
+add_path "/usr/sbin"
+add_path "/sbin"
+add_path "/Library/Apple/usr/bin"
+add_path "/usr/local/go/bin"
+add_path "~/go/bin"
+add_path "~/zig"
+add_path "/Applications/Racket v8.8/bin"
+add_path "/Applications/Geany.app/Contents/MacOS"
+add_path "/Applications/SWI-Prolog.app/Contents/MacOS"
+add_path "~/.config/emacs/bin"
+add_path "~/.npm-global/bin"
+add_path "/Applications/Postgres.app/Contents/Versions/latest/bin"
+add_path "~/.local/bin"
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+zinit ice depth"1" # git clone depth
+zinit light romkatv/powerlevel10k
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+
+# vi-mode
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
+### End of Zinit's installer chunk
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+######################################   zsh options   ######################################
+# auto cd
+setopt AUTO_CD
+# case-insensitive completion
+
