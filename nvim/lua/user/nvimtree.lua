@@ -11,9 +11,10 @@ function M.config()
 
 	local icons = require("user.icons")
 
+
 	require("nvim-tree").setup({
 		hijack_netrw = true,
-		sync_root_with_cwd = true,
+		-- sync_root_with_cwd = true,
 		view = {
 			relativenumber = true,
 		},
@@ -70,10 +71,10 @@ function M.config()
 		update_focused_file = {
 			enable = true,
 			debounce_delay = 15,
-			update_root = true,
+			update_root = false,
 			ignore_list = {},
 		},
-
+         
 		diagnostics = {
 			enable = true,
 			show_on_dirs = false,
@@ -91,6 +92,11 @@ function M.config()
 			},
 		},
 	})
+
+
 end
 
+
+
 return M
+

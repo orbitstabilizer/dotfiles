@@ -27,10 +27,12 @@ function M.config()
         next = "<c-j>",
         prev = "<c-k>",
         dismiss = "<c-h>",
+        accept_line = "<m-l>",
+        accept_word = "<c-w>",
       },
     },
     filetypes = {
-      markdown = true,
+      markdown = false,
       help = false,
       gitcommit = false,
       gitrebase = false,
@@ -40,6 +42,16 @@ function M.config()
       ["."] = false,
     },
     copilot_node_command = "node",
+    -- vim.g.copilot_no_tab_map = true
+    -- vim.g.copilot_assume_mapped = true
+    -- vim.g.copilot_tab_fallback = ""
+    -- vim.g.copilot_filetypes = {
+    --   markdown = true,
+    --   norg = false
+    -- }
+
+
+
   }
 
   local opts = { noremap = true, silent = true }

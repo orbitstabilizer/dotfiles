@@ -1,0 +1,221 @@
+return {
+    cmd = { "clangd", "--background-index", "--enable-config" },
+    filetypes = { "c", "cpp", "objc", "objcpp" },
+    -- on_init = function(client, result)
+    --     if result.offsetEncoding then
+    --         client.offset_encoding = result.offsetEncoding
+    --     end
+    -- end,
+    -- root_dir = function(fname)
+    --     local filename = util.path.is_absolute(fname) and fname or util.path.join(vim.loop.cwd(), fname)
+    --     return root_pattern(filename) or util.path.dirname(filename)
+    -- end,
+    --     capabilities = {
+    --         callHierarchy = {
+    --             dynamicRegistration = false,
+    --         },
+    --         offsetEncoding = { "utf-8", "utf-16" },
+    --         textDocument = {
+    --             codeAction = {
+    --                 codeActionLiteralSupport = {
+    --                     codeActionKind = {
+    --                         valueSet = {
+    --                             "",
+    --                             "Empty",
+    --                             "QuickFix",
+    --                             "Refactor",
+    --                             "RefactorExtract",
+    --                             "RefactorInline",
+    --                             "RefactorRewrite",
+    --                             "Source",
+    --                             "SourceOrganizeImports",
+    --                             "quickfix",
+    --                             "refactor",
+    --                             "refactor.extract",
+    --                             "refactor.inline",
+    --                             "refactor.rewrite",
+    --                             "source",
+    --                             "source.organizeImports",
+    --                         },
+    --                     },
+    --                 },
+    --                 dynamicRegistration = false,
+    --             },
+    --             completion = {
+    --                 completionItem = {
+    --                     commitCharactersSupport = false,
+    --                     deprecatedSupport = false,
+    --                     documentationFormat = { "markdown", "plaintext" },
+    --                     preselectSupport = false,
+    --                     snippetSupport = true,
+    --                 },
+    --                 completionItemKind = {
+    --                     valueSet = {
+    --                         1,
+    --                         2,
+    --                         3,
+    --                         4,
+    --                         5,
+    --                         6,
+    --                         7,
+    --                         8,
+    --                         9,
+    --                         10,
+    --                         11,
+    --                         12,
+    --                         13,
+    --                         14,
+    --                         15,
+    --                         16,
+    --                         17,
+    --                         18,
+    --                         19,
+    --                         20,
+    --                         21,
+    --                         22,
+    --                         23,
+    --                         24,
+    --                         25,
+    --                     },
+    --                 },
+    --                 contextSupport = false,
+    --                 dynamicRegistration = false,
+    --                 editsNearCursor = true,
+    --             },
+    --             declaration = {
+    --                 linkSupport = true,
+    --             },
+    --             definition = {
+    --                 linkSupport = true,
+    --             },
+    --             documentHighlight = {
+    --                 dynamicRegistration = false,
+    --             },
+    --             documentSymbol = {
+    --                 dynamicRegistration = false,
+    --                 hierarchicalDocumentSymbolSupport = true,
+    --                 symbolKind = {
+    --                     valueSet = {
+    --                         1,
+    --                         2,
+    --                         3,
+    --                         4,
+    --                         5,
+    --                         6,
+    --                         7,
+    --                         8,
+    --                         9,
+    --                         10,
+    --                         11,
+    --                         12,
+    --                         13,
+    --                         14,
+    --                         15,
+    --                         16,
+    --                         17,
+    --                         18,
+    --                         19,
+    --                         20,
+    --                         21,
+    --                         22,
+    --                         23,
+    --                         24,
+    --                         25,
+    --                         26,
+    --                     },
+    --                 },
+    --             },
+    --             hover = {
+    --                 contentFormat = { "markdown", "plaintext" },
+    --                 dynamicRegistration = false,
+    --             },
+    --             implementation = {
+    --                 linkSupport = true,
+    --             },
+    --             publishDiagnostics = {
+    --                 relatedInformation = true,
+    --                 tagSupport = {
+    --                     valueSet = { 1, 2 },
+    --                 },
+    --             },
+    --             references = {
+    --                 dynamicRegistration = false,
+    --             },
+    --             rename = {
+    --                 dynamicRegistration = false,
+    --                 prepareSupport = true,
+    --             },
+    --             signatureHelp = {
+    --                 dynamicRegistration = false,
+    --                 signatureInformation = {
+    --                     activeParameterSupport = true,
+    --                     documentationFormat = { "markdown", "plaintext" },
+    --                     parameterInformation = {
+    --                         labelOffsetSupport = true,
+    --                     },
+    --                 },
+    --             },
+    --             synchronization = {
+    --                 didSave = true,
+    --                 dynamicRegistration = false,
+    --                 willSave = false,
+    --                 willSaveWaitUntil = false,
+    --             },
+    --             typeDefinition = {
+    --                 linkSupport = true,
+    --             },
+    --         },
+    --         window = {
+    --             showDocument = {
+    --                 support = false,
+    --             },
+    --             showMessage = {
+    --                 messageActionItem = {
+    --                     additionalPropertiesSupport = false,
+    --                 },
+    --             },
+    --             workDoneProgress = true,
+    --         },
+    --         workspace = {
+    --             applyEdit = true,
+    --             symbol = {
+    --                 dynamicRegistration = false,
+    --                 hierarchicalWorkspaceSymbolSupport = true,
+    --                 symbolKind = {
+    --                     valueSet = {
+    --                         1,
+    --                         2,
+    --                         3,
+    --                         4,
+    --                         5,
+    --                         6,
+    --                         7,
+    --                         8,
+    --                         9,
+    --                         10,
+    --                         11,
+    --                         12,
+    --                         13,
+    --                         14,
+    --                         15,
+    --                         16,
+    --                         17,
+    --                         18,
+    --                         19,
+    --                         20,
+    --                         21,
+    --                         22,
+    --                         23,
+    --                         24,
+    --                         25,
+    --                         26,
+    --                     },
+    --                 },
+    --             },
+    --             workspaceEdit = {
+    --                 resourceOperations = { "rename", "create", "delete" },
+    --             },
+    --             workspaceFolders = true,
+    --         },
+    --     },
+}

@@ -7,9 +7,11 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 	end,
 })
 
+-- autocmd BufReadPost,FileReadPost * normal zR
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	callback = function()
 		vim.cmd("set formatoptions-=cro")
+        -- vim.cmd("normal zR")
 	end,
 })
 
@@ -37,11 +39,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
-	callback = function()
-		vim.cmd("quit")
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
+-- 	callback = function()
+-- 		vim.cmd("quit")
+-- 	end,
+-- })
 
 vim.api.nvim_create_autocmd({ "VimResized" }, {
 	callback = function()
@@ -49,12 +51,12 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.cmd("checktime")
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+-- 	pattern = { "*" },
+-- 	callback = function()
+-- 		vim.cmd("checktime")
+-- 	end,
+-- })
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	callback = function()
@@ -83,3 +85,8 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 		end
 	end,
 })
+
+
+
+
+
