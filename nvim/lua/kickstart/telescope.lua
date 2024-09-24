@@ -58,6 +58,18 @@ M.config = function()
         --   },
         -- },
         -- pickers = {}
+        defaults = {
+            theme = "ivy",
+            sorting_strategy = "ascending",
+            layout_config = {
+                horizontal = {
+                    width = 0.8,
+                    height = 0.7,
+                    prompt_position = "top",
+                    preview_width = 0.3,
+                },
+            },
+        },
         extensions = {
             ["ui-select"] = {
                 require("telescope.themes").get_dropdown(),
@@ -70,6 +82,18 @@ M.config = function()
             },
             file_browser = {
                 theme = "ivy",
+                
+                -- layout_strategy = 'vertical',
+                -- layout_config = {
+                --     anchor = "E", 
+                --     vertical = {
+                --         height = 0.99,
+                --         preview_cutoff = 20,
+                --         prompt_position = "top",
+                --         width = 0.3
+                --     } 
+                -- },
+
                 -- disables netrw and use telescope-file-browser in its place
                 hijack_netrw = true,
                 mappings = {
@@ -102,23 +126,51 @@ M.config = function()
     -- See `:help telescope.builtin`
     local builtin = require("telescope.builtin")
     local wk = require("which-key")
-    wk.register({
-        f = {
-            name = "Telescope",
-            h = { builtin.help_tags, "Search [H]elp" },
-            k = { builtin.keymaps, "Search [K]eymaps" },
-            f = { builtin.find_files, "Search [F]iles" },
-            s = { builtin.builtin, "Search [S]elect Telescope" },
-            w = { builtin.grep_string, "Search current [W]ord" },
-            g = { builtin.live_grep, "Search by [G]rep" },
-            d = { builtin.diagnostics, "Search [D]iagnostics" },
-            r = { builtin.resume, "Search [R]esume" },
-            ["."] = { builtin.oldfiles, '[S]earch Recent Files ("." for repeat)' },
-            b = { builtin.buffers, "Find Existing [B]uffers" },
-        },
-    }, {
-        prefix = "<leader>",
+    -- wk.register({
+    --     f = {
+    --         name = "Telescope",
+    --         h = { builtin.help_tags, "Search [H]elp" },
+    --         k = { builtin.keymaps, "Search [K]eymaps" },
+    --         f = { builtin.find_files, "Search [F]iles" },
+    --         s = { builtin.builtin, "Search [S]elect Telescope" },
+    --         w = { builtin.grep_string, "Search current [W]ord" },
+    --         g = { builtin.live_grep, "Search by [G]rep" },
+    --         d = { builtin.diagnostics, "Search [D]iagnostics" },
+    --         r = { builtin.resume, "Search [R]esume" },
+    --         ["."] = { builtin.oldfiles, '[S]earch Recent Files ("." for repeat)' },
+    --     },
+    --     ["b"] = {builtin.buffers, "Find Existing Buffers"},
+    -- }, {
+    --     prefix = "<leader>",
+    -- })
+
+  -- wk.add({
+  --   { "<leader>b", <function 1>, desc = "Find Existing Buffers" },
+  --   { "<leader>f", group = "Telescope" },
+  --   { "<leader>f.", <function 1>, desc = '[S]earch Recent Files ("." for repeat)' },
+  --   { "<leader>fd", <function 1>, desc = "Search [D]iagnostics" },
+  --   { "<leader>ff", <function 1>, desc = "Search [F]iles" },
+  --   { "<leader>fg", <function 1>, desc = "Search by [G]rep" },
+  --   { "<leader>fh", <function 1>, desc = "Search [H]elp" },
+  --   { "<leader>fk", <function 1>, desc = "Search [K]eymaps" },
+  --   { "<leader>fr", <function 1>, desc = "Search [R]esume" },
+  --   { "<leader>fs", <function 1>, desc = "Search [S]elect Telescope" },
+  --   { "<leader>fw", <function 1>, desc = "Search current [W]ord" },
+  -- })
+    wk.add({
+        { "<leader>b", builtin.buffers, desc = "Find Existing Buffers" },
+        { "<leader>f", group = "Telescope" },
+        { "<leader>f.", builtin.oldfiles, desc = '[S]earch Recent Files ("." for repeat)' },
+        { "<leader>fd", builtin.diagnostics, desc = "Search [D]iagnostics" },
+        { "<leader>ff", builtin.find_files, desc = "Search [F]iles" },
+        { "<leader>fg", builtin.live_grep, desc = "Search by [G]rep" },
+        { "<leader>fh", builtin.help_tags, desc = "Search [H]elp" },
+        { "<leader>fk", builtin.keymaps, desc = "Search [K]eymaps" },
+        { "<leader>fr", builtin.resume, desc = "Search [R]esume" },
+        { "<leader>fs", builtin.builtin, desc = "Search [S]elect Telescope" },
+        { "<leader>fw", builtin.grep_string, desc = "Search current [W]ord" },
     })
+
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set("n", "<leader>/", function()

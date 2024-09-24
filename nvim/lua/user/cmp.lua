@@ -45,6 +45,7 @@ function M.config()
 	local luasnip = require("luasnip")
 	-- require("luasnip/loaders/from_vscode").lazy_load()
     luasnip.add_snippets('cpp', require('user.cpp')) 
+    luasnip.add_snippets('lua', require('user.lua')) 
 
 
 	vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })

@@ -8,8 +8,8 @@ require("user.utils")
 -- local ok, err = pcall(require, "user.retrobox")
 local ok = false
 if not ok then
-    spec("user.lunar_colorscheme")
-    -- vim.notify("Error loading retrobox: " .. err)
+	spec("user.lunar_colorscheme")
+	-- vim.notify("Error loading retrobox: " .. err)
 end
 spec("user.devicons")
 spec("user.treesitter")
@@ -21,7 +21,7 @@ spec("user.cmp")
 -- spec("user.telescope")
 spec("kickstart.telescope")
 
--- spec("user.none-ls")
+spec("user.none-ls")
 spec("user.illuminate")
 spec("user.gitsigns")
 spec("user.whichkey")
@@ -45,22 +45,27 @@ spec("user.project")
 spec("user.extras.copilot")
 spec("user.extras.cellular-automaton")
 spec("user.extras.obsidian")
--- spec("user.extras.mini")
+spec("user.extras.aerial")
+spec("user.extras.mini")
 -- spec("user.extras.nvim-ufo")
+spec("user.extras.nvim-bqf")
+spec("user.extras.iron")
+-- spec("user.extras.kickstart-python")
+spec("user.extras.venv-selector")
+spec("user.extras.diffview")
 
 require("user.lazy")
 
-if vim.g.neovide then
-    vim.g.neovide_cursor_animation_length = 0
-else
-    spec("user.extras.neoscroll")
-end
+-- if vim.g.neovide then
+--     vim.g.neovide_cursor_animation_length = 0
+-- else
+--     spec("user.extras.neoscroll")
+-- end
+spec("user.extras.neoscroll")
 
 vim.cmd("unmap H")
 vim.cmd("unmap L")
 -- https://github.com/vim/vim/issues/6040#issuecomment-827176487
 vim.cmd([[tnoremap <S-space> <space>]])
 
-
 -- mini.nvim
-

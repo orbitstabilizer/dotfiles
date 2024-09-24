@@ -33,6 +33,7 @@ function M.config()
     },
     filetypes = {
       markdown = false,
+      sh = false,
       help = false,
       gitcommit = false,
       gitrebase = false,
@@ -46,10 +47,8 @@ function M.config()
     -- vim.g.copilot_assume_mapped = true
     -- vim.g.copilot_tab_fallback = ""
     -- vim.g.copilot_filetypes = {
-    --   markdown = true,
-    --   norg = false
+    --         sh = false,
     -- }
-
 
 
   }

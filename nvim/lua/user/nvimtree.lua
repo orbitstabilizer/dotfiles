@@ -5,18 +5,18 @@ local M = {
 
 function M.config()
 	local wk = require("which-key")
-	wk.register({
-		["<leader>e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
+	wk.add({
+		{ "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Explorer" },
 	})
 
 	local icons = require("user.icons")
-
 
 	require("nvim-tree").setup({
 		hijack_netrw = true,
 		-- sync_root_with_cwd = true,
 		view = {
 			relativenumber = true,
+			width = 60,
 		},
 		renderer = {
 			add_trailing = false,
@@ -74,7 +74,7 @@ function M.config()
 			update_root = false,
 			ignore_list = {},
 		},
-         
+
 		diagnostics = {
 			enable = true,
 			show_on_dirs = false,
@@ -92,11 +92,6 @@ function M.config()
 			},
 		},
 	})
-
-
 end
 
-
-
 return M
-

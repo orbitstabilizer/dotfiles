@@ -21,15 +21,7 @@ return {
       {
         name = "log",
         path = "~/tmp/log/"
-      },
-      {
-        name = "uoft",
-        path = "~/Documents/UofT/"
-      },
-      {
-        name = "study",
-        path = "~/study/"
-      },
+      }
     },
 
     -- see below for full list of options 👇

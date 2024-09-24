@@ -21,15 +21,15 @@ function M.config()
 
         },
 		indent = { enable = true },
-		-- incremental_selection = {
-		-- 	enable = true,
-		-- 	keymaps = {
-		-- 		init_selection = "<Leader>]", -- set to `false` to disable one of the mappings
-		-- 		node_incremental = "<C-]>",
-		-- 		scope_incremental = "<C-n>",
-		-- 		node_decremental = "<C-[>",
-		-- 	},
-		-- },
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection = "<Leader>]", -- set to `false` to disable one of the mappings
+				node_incremental = "<C-]>",
+				scope_incremental = "<C-n>",
+				node_decremental = "<C-[>",
+			},
+		},
 	})
 end
 

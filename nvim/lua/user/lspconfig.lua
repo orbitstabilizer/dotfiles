@@ -19,22 +19,21 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 end
 
-
 M.on_attach = function(client, bufnr)
 	lsp_keymaps(bufnr)
 
 	if client.supports_method("textDocument/inlayHint") then
-        -- if vim.lsp contains inlay_hints, then enable it
-        if vim.lsp.inlay_hints then
-            vim.lsp.inlay_hints(bufnr, {})
-        end
+		-- if vim.lsp contains inlay_hints, then enable it
+		if vim.lsp.inlay_hints then
+			vim.lsp.inlay_hints(bufnr, {})
+		end
 	end
 end
 
 function M.common_capabilities()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+	capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
 	return capabilities
 end
 
@@ -45,45 +44,38 @@ end
 
 function M.config()
 	local wk = require("which-key")
-	wk.register({
-		["<leader>la"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		["<leader>lf"] = {
-			"<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name == 'rust_analyzer' end})<cr>",
-			"Format",
-		},
-		["<leader>li"] = { "<cmd>LspInfo<cr>", "Info" },
-		["<leader>lj"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
-		["<leader>lh"] = { "<cmd>lua require('user.lspconfig').toggle_inlay_hints()<cr>", "Hints" },
-		["<leader>lk"] = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
-		["<leader>ll"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-		["<leader>lq"] = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-		["<leader>lr"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-	})
 
-	wk.register({
-		["<leader>la"] = {
-			name = "LSP",
-			a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action", mode = "v" },
-		},
+	wk.add({
+		{ "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
+		{ "<leader>lh", "<cmd>lua require('user.lspconfig').toggle_inlay_hints()<cr>", desc = "Hints" },
+		{ "<leader>li", "<cmd>LspInfo<cr>", desc = "Info" },
+		{ "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc = "Next Diagnostic" },
+		{ "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "Prev Diagnostic" },
+		{ "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens Action" },
+		{ "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "Quickfix" },
+		{ "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
+        { "<leader>la", group = "LSP" },
+        { "<leader>laa", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action", mode = "v" },
 	})
-
 	local lspconfig = require("lspconfig")
 	local icons = require("user.icons")
 
 	local servers = {
-        "rust_analyzer",
+        "zls",
+		"rust_analyzer",
 		"lua_ls",
 		"cssls",
 		"html",
-		"tsserver",
+		"ts_ls",
 		"eslint",
-		"tsserver",
 		"pyright",
+		-- "pylsp",
+		-- "pylyzer",
 		"bashls",
 		-- "jsonls",
 		"yamlls",
 		"clangd",
-        "sqlls",
+		"sqlls",
 	}
 
 	local default_diagnostic_config = {
@@ -135,9 +127,9 @@ function M.config()
 		if server == "lua_ls" then
 			require("neodev").setup({})
 		end
-        -- if server == "clangd" then
-        --     vim.notify(opts)
-        -- end
+		-- if server == "clangd" then
+		--     vim.notify(opts)
+		-- end
 
 		lspconfig[server].setup(opts)
 	end

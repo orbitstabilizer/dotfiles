@@ -32,13 +32,12 @@ keymap("n", "<Leader>;c", ":e ~/.config/nvim/init.lua<CR>", opts)
 keymap("n", "<Leader>tc", "<CMD>lua ToggleCompileOnSave()<CR>")
 
 
-
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
-keymap("n", "<M-tab>", "<c-6>", opts)
+keymap("n", "<Leader><tab>", "<c-^>", opts)
 
 keymap("n", "n", "nzz", opts)
 keymap("n", "N", "Nzz", opts)
